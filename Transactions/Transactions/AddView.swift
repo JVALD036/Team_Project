@@ -30,13 +30,19 @@ struct AddView: View {
                         Text($0)}
             
                 }
-                DatePicker("Enter your birthday", selection: $date)
+                DatePicker("Enter Date", selection: $date)
                                 .datePickerStyle(GraphicalDatePickerStyle())
-                                .frame(maxHeight: 400)
+                                .frame(maxHeight: 220)
                 
                 TextField("Notes", text:$notes)
             }
-            .navigationTitle("Add Expense")
+            .navigationTitle("Add Transaction")
+            .toolbar {
+                Button("Save") {
+                    let item = TransactionItem(name: name, type: type, amount: amount, date:date,notes: notes )
+                    transactions.items.append(item)
+                }
+            }
         }
     }
 }
