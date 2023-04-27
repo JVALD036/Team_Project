@@ -36,6 +36,14 @@ struct Category {
 extension Category{
     //main category
     static let autoAndTransport = Category(id:1, name: "Auto & Transport", icon: .car_alt)
+    static let billsAndUtilities = Category(id:2, name: "Bills And Utilities", icon: .file_invoice_dollar)
+    static let entertainment = Category(id:3, name: "Entertainment", icon: .film)
+    static let feesAndCharges = Category(id:4, name: "Fees & Charges", icon: .hand_holding_usd)
+    static let foodAndDining = Category(id:5, name: "Food & Dining", icon: .pizza_slice)
+    static let home = Category(id:6, name: "Home", icon: .home)
+    static let income = Category(id:7, name: "Income", icon: .dollar_sign)
+    static let shopping = Category(id:8, name: "Shopping", icon: .shopping_cart)
+    static let transfer = Category(id: 9, name: "Transfer", icon: .exchange_alt)
     
     //sub category - example usage
     static let publicTransportation = Category(id: 101, name: "Public Transport", icon: .bus, mainCategoryId: 1)
