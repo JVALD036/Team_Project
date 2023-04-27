@@ -13,6 +13,8 @@ struct ExpenseItem: Identifiable, Codable {
     let name: String //name of transaction
     let type: String
     let amount: Double // cost
+    let date: Date
+    let notes: String
     
     
     var categoryId: String // reference the Icon needed
@@ -35,15 +37,19 @@ struct Category {
 
 extension Category{
     //main category
-    static let autoAndTransport = Category(id:1, name: "Auto & Transport", icon: .car_alt)
-    static let billsAndUtilities = Category(id:2, name: "Bills And Utilities", icon: .file_invoice_dollar)
-    static let entertainment = Category(id:3, name: "Entertainment", icon: .film)
-    static let feesAndCharges = Category(id:4, name: "Fees & Charges", icon: .hand_holding_usd)
-    static let foodAndDining = Category(id:5, name: "Food & Dining", icon: .pizza_slice)
-    static let home = Category(id:6, name: "Home", icon: .home)
-    static let income = Category(id:7, name: "Income", icon: .dollar_sign)
-    static let shopping = Category(id:8, name: "Shopping", icon: .shopping_cart)
-    static let transfer = Category(id: 9, name: "Transfer", icon: .exchange_alt)
+    static let education = Category(id:1, name: "Education", icon: .school)
+    static let entertainment = Category(id:2, name: "Entertainment", icon: .gamepad)
+    static let food = Category(id:3, name: "Food", icon: .hamburger)
+    static let gas = Category(id:4, name: "Gasoline", icon: .gas_pump )
+    static let groceries = Category(id:5, name: "Groceries", icon: .store)
+    static let loan = Category(id:10, name: "Loan", icon: .money_bill)
+    static let medical = Category(id:6, name: "Medical", icon: .clinic_medical)
+    static let miscellaneous = Category(id:7, name: "Miscellaneous", icon: .random)
+    static let home = Category(id:8, name: "Rent", icon: .house_user)
+    static let subscription = Category(id: 9, name: "Subscription", icon: .itunes_note)
+    static let travel = Category(id:8, name: "Travel", icon: .plane)
+    static let utilities = Category(id: 9, name: "Utilities", icon: .lightbulb)
+    
     
     //sub category - example usage
     static let publicTransportation = Category(id: 101, name: "Public Transport", icon: .bus, mainCategoryId: 1)
@@ -53,8 +59,17 @@ extension Category{
 //seperated main and sub categories for future use
 extension Category{
     static let mainCategories: [Category] = [
-        .autoAndTransport]
-    
+        .education,
+        .entertainment,
+        .food,
+        .gas,
+        .groceries,
+        .loan,
+        .medical,
+        .miscellaneous,
+        .home,
+        .subscription,
+        .travel,utilities]
     static let subCategories: [Category] = [
         .publicTransportation,
         .taxi]

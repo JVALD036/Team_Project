@@ -13,28 +13,40 @@ struct AddView: View {
     @Environment(\.dismiss) var dismiss
     
     @State private var name = ""
-    @State private var type = "Personal"
+    @State private var type = "Miscellaneous"
     @State private var amount = 0.0
+    @State private var date = Date.now
+    @State private var notes = ""
     
-    let types = ["Business", "Personal", "Auto & Transport", "Public Transport"]
+    
+    let types = ["Education", "Entertainment", "Food", "Gas", "Groceries", "Loan", "Medical", "Miscellaneous", "Rent", "Subscription", "Travel","Utilities"]
     
     var body: some View {
         NavigationView {
             Form {
                 TextField("Name", text: $name)
                 
+                TextField("Amount", value:$amount, format :.currency(code: "USD"))
+                    .keyboardType(.decimalPad)
+                
+                
                 Picker("Type", selection: $type) {
                     ForEach(types, id:\.self) {
                         Text($0)
                     }
                 }
-                TextField("Amount", value:$amount, format :.currency(code: "USD"))
-                    .keyboardType(.decimalPad)
+                DatePicker("Enter Date", selection: $date)
+                                .datePickerStyle(GraphicalDatePickerStyle())
+                                .frame(maxHeight: 220)
+                
+                TextField("Notes", text:$notes)
             }
+                
             .navigationTitle("Add new expense")
             .toolbar{
                 Button("Save"){
-                    let item = ExpenseItem(name: name, type:type, amount:amount, categoryId: "Auto & Transport")
+                    //fix category ID
+                    let item = ExpenseItem(name: name, type: type, amount: amount, date: date, notes: notes, categoryId: "idk")
                     expenses.items.append(item)
                     dismiss()
                 }

@@ -18,6 +18,14 @@ class Expenses: ObservableObject {
             }
         }
     }
+    // Computed property that calculates the total amount
+    //Source https://stackoverflow.com/questions/62354836/swiftui-how-do-i-access-manipulate-data-between-views
+    var total: Double {
+        self.items.reduce(0) { result, item -> Double in
+            result + item.amount
+        }
+    }
+            
     init(){
         if let savedItems = UserDefaults.standard.data(forKey: "Items") {
             //refering to the array of expense item as a type of it self -> .self
